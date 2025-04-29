@@ -1,5 +1,4 @@
 "use client";
-import { CardType } from "@/app/interface";
 import { useParams } from "next/navigation";
 import React, { useEffect, useState } from "react";
 
