@@ -1,17 +1,18 @@
 "use client";
+import { CardType } from "@/app/interface";
 import { useParams } from "next/navigation";
 import React, { useEffect, useState } from "react";
 
 const Page = () => {
   const { cardId } = useParams();
-  const [cart, setCart] = useState<any>();
+  const [cart, setCart] = useState<CardType>();
   const [loading, setLoading] = useState(false);
   useEffect(() => {
     async function fetchData() {
       try {
         setLoading(true);
         const res = await fetch(`https://fakestoreapi.com/carts/${cardId}`);
-        const cartData: any = await res.json();
+        const cartData: CardType = await res.json();
         setCart(cartData);
       } finally {
         setLoading(false);

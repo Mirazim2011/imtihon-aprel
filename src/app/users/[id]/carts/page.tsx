@@ -6,14 +6,14 @@ import React, { useEffect, useState } from "react";
 
 const Page = () => {
   const { id } = useParams();
-  const [cart, setCart] = useState<any>();
+  const [cart, setCart] = useState<CardType[]>();
   const [loading, setLoading] = useState(false);
   useEffect(() => {
     async function fetchData() {
       try {
         setLoading(true);
         const res = await fetch(`https://fakestoreapi.com/carts`);
-        const cartData: CardType = await res.json();
+        const cartData = await res.json();
         setCart(cartData);
       } finally {
         setLoading(false);
@@ -21,7 +21,7 @@ const Page = () => {
     }
     fetchData();
   }, [id]);
-  const cartItem = cart?.filter((item: any) => item.userId == id);
+  const cartItem = cart?.filter((item: CardType) => item.userId === Number(id));
   return (
     <div className="p-4">
       {loading ? (
